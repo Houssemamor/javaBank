@@ -4,7 +4,7 @@ public abstract class Account {
     private double balance=0;
     private String ownerName;
 
-    public int getAccountNumber(int accountNumber) {
+    public int getAccountNumber() {
         return this.accountNumber;
     }
 
