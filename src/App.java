@@ -18,6 +18,14 @@ public class App {
             String ownerName = sc.next();
             System.out.println("Enter the balance: ");
             double balance = sc.nextDouble();
+            while (true) { // fix the user input validation -_-
+                if (choice == 1 || choice == 2) {
+                    break;
+                } else {
+                    System.out.println("Invalid choice. Please enter 1 or 2");
+                    choice = sc.nextInt();
+                }
+            }
             if (choice == 1) {
                 SavingsAccount savingsAccount = new SavingsAccount(accountNumber, balance, ownerName);
                 bank.getAccounts()[i] = savingsAccount;
@@ -28,6 +36,7 @@ public class App {
 
             }
             mainMenu(bank);
+            sc.close();
         }
         
         public static void mainMenu(Bank bank) {
@@ -39,15 +48,27 @@ public class App {
                 System.out.println("3. Get Balance");
                 System.out.println("4. Exit");
                 int choice = sc.nextInt();
+                int accountNumber;
+                double amount;
                 switch (choice) {
                 case 1:
-                    
+                    System.out.println("Enter the account number: ");
+                    accountNumber = sc.nextInt();
+                    System.out.println("Enter the amount to deposit: ");
+                    amount = sc.nextDouble();
+                    bank.deposit(accountNumber, amount);
                     break;
                 case 2:
-                    
+                    System.out.println("Enter the account number: ");
+                    accountNumber = sc.nextInt();
+                    System.out.println("Enter the amount to withdraw: ");
+                    amount = sc.nextDouble();
+                    bank.withdraw(accountNumber, amount);
                     break;
                 case 3:
-                    
+                    System.out.println("Enter the account number: ");
+                    accountNumber = sc.nextInt();
+                    bank.getBalance(accountNumber);
                     break;
                 case 4:
                     System.exit(0);
@@ -55,6 +76,7 @@ public class App {
                 case 5:
                     System.out.println("Secret option: show all accounts");
                     for (int i = 0; i < bank.getTotalAccounts(); i++) {
+                        System.out.println();
                         System.out.println("Account number: " + bank.getAccounts()[i].getAccountNumber());
                         System.out.println("Owner name: " + bank.getAccounts()[i].getOwnerName());
                         System.out.println("Balance: " + bank.getAccounts()[i].getBalance());
@@ -66,6 +88,7 @@ public class App {
                     break;
                 }
                 }
+            
             }
             
             
