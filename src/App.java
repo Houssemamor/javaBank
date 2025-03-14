@@ -27,12 +27,11 @@ public class App {
             }
 
             }
-            mainMenu();
+            mainMenu(bank);
         }
         
-        public static void mainMenu() {
+        public static void mainMenu(Bank bank) {
             Scanner sc = new Scanner(System.in);
-            Bank bank = new Bank(0); // Initialize bank object
             while (true) {
                 System.out.println("What would you like to do?");
                 System.out.println("1. Deposit");
