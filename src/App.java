@@ -5,25 +5,25 @@ public class App {
         //System.out.println("Hello, World!");
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of accounts you want to create: ");
-        int totalAccounts = sc.nextInt();
+        int totalAccounts = (int) inputControl(sc);
         Bank bank = new Bank(totalAccounts);
         for (int i = 0; i < totalAccounts; i++) {
             System.out.println("Enter the type of account you want to create: ");
             System.out.println("1. Savings Account");
             System.out.println("2. Current Account");
-            int choice = sc.nextInt();
+            int choice = (int) inputControl(sc);
             System.out.println("Enter the account number: ");
-            int accountNumber = sc.nextInt();
+            int accountNumber = (int) inputControl(sc);
             System.out.println("Enter the owner name: ");
             String ownerName = sc.next();
             System.out.println("Enter the balance: ");
-            double balance = sc.nextDouble();
+            double balance = inputControl(sc);
             while (true) { // fix the user input validation -_-
                 if (choice == 1 || choice == 2) {
                     break;
                 } else {
                     System.out.println("Invalid choice. Please enter 1 or 2");
-                    choice = sc.nextInt();
+                    choice = (int) inputControl(sc);
                 }
             }
             if (choice == 1) {
@@ -53,16 +53,16 @@ public class App {
                 switch (choice) {
                 case 1:
                     System.out.println("Enter the account number: ");
-                    accountNumber = sc.nextInt();
+                    accountNumber = (int) inputControl(sc);
                     System.out.println("Enter the amount to deposit: ");
-                    amount = sc.nextDouble();
+                    amount = inputControl(sc);
                     bank.deposit(accountNumber, amount);
                     break;
                 case 2:
                     System.out.println("Enter the account number: ");
-                    accountNumber = sc.nextInt();
+                    accountNumber = (int) inputControl(sc);
                     System.out.println("Enter the amount to withdraw: ");
-                    amount = sc.nextDouble();
+                    amount = inputControl(sc);
                     bank.withdraw(accountNumber, amount);
                     break;
                 case 3:
@@ -91,8 +91,20 @@ public class App {
             
             }
             
-            
-            
-            
+            public static double inputControl(Scanner sc) {
+                while (true) {
+                    if (sc.hasNextDouble()) {
+                        double input = sc.nextDouble();
+                        if (input > 0) {
+                            return input;
+                        } else {
+                            System.out.println("Invalid input. Please enter a positive number.");
+                        }
+                    } else {
+                        System.out.println("Invalid input. Please enter a valid number.");
+                        sc.next(); // clear the invalid input
+                    }
+                }
+            }
         }
 

@@ -21,6 +21,7 @@ public abstract class Account {
         this.ownerName = ownerName;
     }
 
+    @SuppressWarnings("unused")
     private void setBalance(double balance){
         balance = this.balance;        
     }
